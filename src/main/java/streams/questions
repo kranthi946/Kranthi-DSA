@@ -1,0 +1,64 @@
+Sure! Here are the **Java 8 coding interview questions** from the list:
+
+1. Write a Java 8 program using a lambda expression to add two integers.
+2. Write a Java 8 program to filter and print even numbers from a list.
+3. Write a Java 8 program to map integers to their squares and print results.
+4. Write a Java 8 program to find and print the maximum value from a list.
+5. Write a Java 8 program to count and print the number of elements in a list.
+6. Write a Java 8 program to reduce a list of integers to their sum.
+7. Write a Java 8 program to print the lengths of strings in a list.
+8. Write a Java 8 program to print distinct elements from a list of integers.
+9. Write a Java 8 program to print names sorted in alphabetical order from a list.
+10. Write a Java 8 program using Optional to check if a value is present.
+11. Write a Java 8 program to group strings by their lengths and print the groups.
+12. Write a Java 8 program to collect squares of numbers into a new list.
+13. Write a Java 8 program to limit and skip elements in a list, then print.
+14. Write a Java 8 program to find and print the first element in sorted order.
+15. Write a Java 8 program to create a custom functional interface for addition.
+16. Write a Java 8 program using flatMap to print characters from lists of strings.
+17. Write a Java 8 program using peek to print processed elements during a stream operation.
+18. Write a Java 8 program to create and print result from a CompletableFuture asynchronously.
+19. Write a Java 8 program using reduce to calculate the product of a list.
+20. Write a Java 8 program to check if any number in a list is even.
+
+
+Certainly! Here are **30 more Java 8 interview questions** that cover a wide range of topics and concepts:
+
+---
+
+### 1. Write a Java 8 program to demonstrate the use of the `map` method with a `Stream`.
+### 2. Write a Java 8 program to sort a list of strings by their lengths in ascending order.
+### 3. Write a Java 8 program to demonstrate the use of `filter` and `map` together.
+### 4. Write a Java 8 program that uses `reduce` to concatenate a list of strings.
+### 5. Write a Java 8 program to print the first three odd numbers from a list of integers.
+### 6. Write a Java 8 program to use `forEach` to print all elements of a list in uppercase.
+### 7. Write a Java 8 program that demonstrates how to use `flatMap` on a list of lists.
+### 8. Write a Java 8 program to demonstrate how `Optional` works when the value is `null`.
+### 9. Write a Java 8 program to create a list of unique words from a sentence and print them.
+### 10. Write a Java 8 program to find the sum of all elements in a list using streams.
+### 11. Write a Java 8 program to find the product of all elements in a list using streams.
+### 12. Write a Java 8 program to find the average of a list of numbers using `mapToInt`.
+### 13. Write a Java 8 program to demonstrate the use of `Collectors.joining()` to join elements of a list into a string.
+### 14. Write a Java 8 program to count how many numbers are greater than 10 in a list.
+### 15. Write a Java 8 program to find the second largest number from a list of integers.
+### 16. Write a Java 8 program to group elements of a list by their length.
+### 17. Write a Java 8 program to filter and print all prime numbers from a list.
+### 18. Write a Java 8 program to use `min` and `max` methods on a list of numbers.
+### 19. Write a Java 8 program to demonstrate the use of `Collectors.toMap()` to convert a list into a map.
+### 20. Write a Java 8 program to print a list of integers, each doubled.
+### 21. Write a Java 8 program to implement the `Predicate` interface to check if a number is even.
+### 22. Write a Java 8 program to create a `Stream` from an array of strings and print each string.
+### 23. Write a Java 8 program to use `Optional` to handle a null value and print a default message.
+### 24. Write a Java 8 program to remove all elements from a list that are less than 10.
+### 25. Write a Java 8 program to demonstrate the use of the `peek` method to view intermediate elements in a stream.
+### 26. Write a Java 8 program to check if all elements in a list are positive numbers.
+### 27. Write a Java 8 program to find the longest word from a list of words using streams.
+### 28. Write a Java 8 program to demonstrate how to use `compareTo` in a custom comparator.
+### 29. Write a Java 8 program to implement `Runnable` using a lambda expression.
+### 30. Write a Java 8 program to demonstrate the use of `parallelStream` for parallel processing.
+
+---
+
+These questions cover several Java 8 concepts like **Stream API**, **Lambda Expressions**, **Optional**, **Collectors**, and **functional interfaces**. They should provide a comprehensive set of problems to help you prepare for Java 8-based coding interviews.
+
+These questions cover a variety of key Java 8 features such as lambdas, streams, `Optional`, and functional interfaces.

@@ -1,0 +1,14 @@
+Key Concepts:
+String literals (like "code") are stored in the string constant pool. If you create multiple references to the same string literal, they will all point to the same object in the pool.
+
+new String("code"): This creates a new String object on the heap, even if its value is the same as a string literal. This is a separate object from the one in the string constant pool.
+
+Expected Behavior:
+s1 and s3 are both assigned the string literal "code". Since string literals are interned, both s1 and s3 will refer to the same object in the string pool.
+s2 is a new String object, created with the new String("code") constructor. This creates a new object in memory, so s2 will not point to the same reference as s1 or s3, even though all of them contain the same string "code".
+Comparison Breakdown:
+Hash Codes: System.identityHashCode() prints the identity hash code, which shows whether two references point to the same object in memory.
+
+Reference Comparison (==): Compares whether two references point to the same memory location (i.e., whether they are the exact same object).
+
+Content Comparison (.equals()): Compares the contents of two strings (i.e., their character sequences).

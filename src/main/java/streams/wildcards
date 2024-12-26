@@ -1,0 +1,5 @@
+Summary of Wildcards
+Wildcard Type	Restriction	Use Case Example	Reading from List	Writing to List
+? (Unbounded)	Any type	List<?> list = new ArrayList<String>();	Yes (Object)	No
+? extends T (Upper Bounded)	Subtype of T or T itself	List<? extends Number> list = new ArrayList<Integer>();	Yes (T or subtype)	No
+? super T (Lower Bounded)	Supertype of T or T itself	List<? super Integer> list = new ArrayList<Number>();	No (Object)	Yes (T)

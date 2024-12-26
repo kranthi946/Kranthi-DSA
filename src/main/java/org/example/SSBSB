@@ -1,0 +1,54 @@
+Here are short notes on **String**, **StringBuilder**, and **StringBuffer** in Java:
+
+### 1. **String**:
+- **Immutable**: Once a `String` object is created, its value cannot be changed. Any operation that modifies a string (like concatenation or substring) creates a **new String object**.
+- **Memory Overhead**: Since strings are immutable, creating many modified strings can result in higher memory usage and performance overhead (due to the creation of new objects).
+- **Thread-Safety**: `String` objects are **immutable**, which means they are inherently thread-safe. Multiple threads can safely use the same `String` without synchronization.
+- **Usage**: Preferred when you need to handle text that doesn't change frequently or when thread safety is a concern.
+
+  **Example**:
+  ```java
+  String s = "Hello";
+  s = s + " World";  // A new String object is created, "Hello World"
+  ```
+
+### 2. **StringBuilder**:
+- **Mutable**: Unlike `String`, `StringBuilder` objects are mutable. You can modify the contents of a `StringBuilder` without creating new objects.
+- **Performance**: `StringBuilder` is generally **faster** than using `String` for repeated concatenations, as it doesn't create a new object each time. The internal character array is resized as needed.
+- **Thread-Safety**: `StringBuilder` is **not thread-safe**. If you need to use a `StringBuilder` object in a multi-threaded environment, you must manually synchronize it or use `StringBuffer`.
+- **Usage**: Ideal for scenarios where strings need to be modified (e.g., inside loops) and thread safety is not a concern.
+
+  **Example**:
+  ```java
+  StringBuilder sb = new StringBuilder("Hello");
+  sb.append(" World");  // No new object created, modifies the existing StringBuilder
+  ```
+
+### 3. **StringBuffer**:
+- **Mutable**: Like `StringBuilder`, `StringBuffer` is mutable, so it allows modification of the string without creating new objects.
+- **Performance**: `StringBuffer` is slightly slower than `StringBuilder` because of the synchronization overhead. It ensures thread safety, meaning that multiple threads can safely modify the same `StringBuffer` object.
+- **Thread-Safety**: `StringBuffer` is **thread-safe**. All its methods are synchronized, meaning only one thread can access the method at a time. This ensures that multiple threads can modify a `StringBuffer` without causing data corruption.
+- **Usage**: `StringBuffer` is used when thread safety is required in a multi-threaded environment (although `StringBuilder` is generally preferred if thread safety is not an issue).
+
+  **Example**:
+  ```java
+  StringBuffer sbf = new StringBuffer("Hello");
+  sbf.append(" World");  // Modifies the existing StringBuffer object in a thread-safe manner
+  ```
+
+### Comparison of String, StringBuilder, and StringBuffer:
+
+| Feature              | **String**                       | **StringBuilder**                | **StringBuffer**                |
+|----------------------|----------------------------------|----------------------------------|---------------------------------|
+| **Immutability**      | Immutable                        | Mutable                          | Mutable                         |
+| **Thread Safety**     | Thread-safe (due to immutability) | Not thread-safe                  | Thread-safe (synchronized methods) |
+| **Performance**       | Slower due to new object creation| Faster for concatenation         | Slower than `StringBuilder` due to synchronization |
+| **Usage**             | For fixed or infrequently changed text | For text modification without thread safety concern | For thread-safe text modifications |
+| **Best Use Case**     | When text does not change often | When text needs frequent modification in a single thread | When text needs frequent modification and thread safety is required |
+
+### Key Takeaways:
+- **String**: Best for immutable text.
+- **StringBuilder**: Best for mutable text in a **single-threaded** environment due to better performance.
+- **StringBuffer**: Best for mutable text in a **multi-threaded** environment, although it’s slower than `StringBuilder` because of synchronization overhead.
+
+Let me know if you need more details!

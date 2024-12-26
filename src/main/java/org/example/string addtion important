@@ -1,0 +1,92 @@
+You're absolutely right! When you perform a string concatenation like `s1 = s1 + "kranthi";`, it will create a **new String object** in memory, even if the concatenation result is identical in content. This is an important aspect of how string concatenation works in Java.
+
+Let me break down what happens in the scenario where you do this:
+
+### String Concatenation Behavior in Java:
+1. **String Literals** (`s1 = "code";` and `s3 = "code";`):
+   - Both `s1` and `s3` initially refer to the same string literal `"code"` in the **string constant pool (SCP)**.
+   - String literals are interned, meaning they are stored in the string pool, and if a literal string is already present in the pool, any subsequent references to that string will point to the same object in the pool.
+
+2. **String Concatenation (`s1 = s1 + "kranthi";`)**:
+   - When you concatenate `s1 + "kranthi"`, a **new string object** is created because strings in Java are **immutable**. This means the value of `s1` itself cannot be changed. Instead, a new string is created and assigned to `s1`.
+   - The resulting string, `"codekranthi"`, is **not automatically interned** (i.e., it is not placed in the string constant pool), and a new string object will be created in the heap memory.
+
+3. **Interning the Result (`intern()`)**:
+   - After concatenation, the string `"codekranthi"` will **not automatically** be added to the string constant pool, but if you call `s1.intern()`, it will check if the string `"codekranthi"` already exists in the pool. If it does not, it will be added.
+
+4. **Why a New Object Is Created**:
+   - Even though you started with a string literal `"code"` and concatenated another string to it, the **concatenation results in a new object** that points to a new memory location. Therefore, the reference `s1` after concatenation will point to a **new object** that is different from the one in the constant pool.
+
+### Complete Code Example:
+
+```java
+package org.example;
+
+public class Strings {
+
+    public static void main(String[] args) {
+        // String literals
+        String s1 = "code";  // String literal
+        String s3 = "code";  // Another reference to the same string literal
+
+        // Concatenating s1 with another string
+        s1 = s1 + "kranthi"; // String concatenation, creates a new object
+
+        // Print the identity hash codes (this simulates the address in memory)
+        System.out.println("HashCode of s1 (after concatenation): " + System.identityHashCode(s1));
+        System.out.println("HashCode of s3 (string literal): " + System.identityHashCode(s3));
+
+        // Compare references (==) to check if they point to the same object
+        System.out.println("\ns1 == s3: " + (s1 == s3));  // false, different objects
+
+        // Compare content using equals() to check if their values are the same
+        System.out.println("\ns1.equals(s3): " + s1.equals(s3));  // true, same content
+
+        // Demonstrate the effect of string interning
+        String s4 = s1.intern();  // Interns the string s1 (puts it in the string pool)
+
+        // HashCode after interning (s4 should now point to the interned version)
+        System.out.println("\nHashCode of s4 (after intern()): " + System.identityHashCode(s4));
+
+        // Check if interned version is the same as the original string literal
+        System.out.println("\ns4 == s3 (after interning): " + (s4 == s3));  // true, same object in the pool
+    }
+}
+```
+
+### Expected Output:
+
+```
+HashCode of s1 (after concatenation): 123456789
+HashCode of s3 (string literal): 1848295844
+
+s1 == s3: false
+
+s1.equals(s3): true
+
+HashCode of s4 (after intern()): 1848295844
+
+s4 == s3 (after interning): true
+```
+
+### Explanation of Output:
+1. **Hash Code Differences**:
+   - After `s1 = s1 + "kranthi";`, the **hash code of `s1`** is different from the hash code of `s3`. This is because the concatenation creates a new `String` object that is different from the string literal `"code"`, and that new object is not interned by default.
+   - `s3` remains pointing to the original string literal `"code"` in the string constant pool.
+
+2. **Reference Comparison (`==`)**:
+   - `s1 == s3` is `false` because after concatenation, `s1` refers to a **new string object** (`"codekranthi"`) created at runtime, while `s3` still refers to the string literal `"code"` in the string constant pool.
+
+3. **Content Comparison (`.equals()`)**:
+   - `s1.equals(s3)` is `true` because the content of `s1` (`"codekranthi"`) is equal to the content of `s3` (`"code"`), even though they are different objects.
+
+4. **Interning (`.intern()`)**:
+   - After calling `s1.intern()`, the string `"codekranthi"` is interned into the string pool, and `s4` will now point to the **same object** as `s3` in the pool (if `"codekranthi"` already exists, or it will be added if not).
+   - After interning, `s4 == s3` is `true` because both `s4` and `s3` now refer to the same interned object in the string constant pool.
+
+### Key Points:
+1. **String Concatenation**: When you concatenate a string (`s1 = s1 + "kranthi";`), Java creates a **new string object** on the heap, and the concatenated result is not interned automatically.
+2. **Interning**: The `.intern()` method places the string in the string constant pool, making it reusable and saving memory. After interning, the string `"codekranthi"` will be treated like any other string literal.
+3. **Reference Comparison (`==`)**: Even if two strings have the same content, `==` checks if they refer to the same object in memory. After concatenation, `s1` and `s3` point to different objects, so `==` returns `false`. However, after interning, both `s4` and `s3` point to the same object in the pool, so `==` returns `true`.
+
+Let me know if you need further clarification or additional examples!

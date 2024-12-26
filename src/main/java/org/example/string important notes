@@ -1,0 +1,90 @@
+Sure! Here's the complete code snippet that covers all the key concepts related to string literals, string pooling, and `new String()` behavior. The code demonstrates the differences between string literals, string pool usage, and new string objects created with `new String()`, and also compares references and contents of the strings.
+
+### Complete Code Snippet:
+
+```java
+package org.example;
+
+public class Strings {
+
+    public static void main(String[] args) {
+        // String literals and new string object
+        String s1 = "code";  // String literal
+        String s3 = "code";  // Another reference to the same string literal
+        String s2 = new String("code"); // String object created with 'new'
+
+        // Print the identity hash codes (this simulates the address in memory)
+        System.out.println("HashCode of s1 (string literal): " + System.identityHashCode(s1));
+        System.out.println("HashCode of s3 (string literal): " + System.identityHashCode(s3));
+        System.out.println("HashCode of s2 (new string object): " + System.identityHashCode(s2));
+
+        // Compare references (==) to check if they point to the same object
+        System.out.println("\ns1 == s2: " + (s1 == s2));  // false, different objects
+        System.out.println("s1 == s3: " + (s1 == s3));  // true, same object in the pool
+
+        // Compare content using equals() to check if their values are the same
+        System.out.println("\ns1.equals(s2): " + s1.equals(s2));  // true, same content
+        System.out.println("s1.equals(s3): " + s1.equals(s3));  // true, same content
+
+        // Explanation of String Pool behavior
+        System.out.println("\nExplanation:");
+        System.out.println("1. String literals (e.g., 'code') are stored in the string constant pool.");
+        System.out.println("2. If the string already exists in the pool, Java reuses it for any subsequent string literals with the same value.");
+        System.out.println("3. Using 'new String()' creates a new object on the heap, even if the content is identical.");
+        System.out.println("4. String pooling ensures memory optimization by reusing identical string literals.");
+        System.out.println("5. The comparison with '==' checks if two references point to the same object in memory.");
+        System.out.println("6. The '.equals()' method compares the content of two strings, not their memory locations.");
+    }
+}
+```
+
+### Explanation of Code:
+
+1. **String Literals (`s1` and `s3`)**:
+   - `s1` and `s3` are both assigned the string literal `"code"`. Since string literals are interned, both `s1` and `s3` point to the same object in the string pool.
+
+2. **New String Object (`s2`)**:
+   - `s2` is created using `new String("code")`, which forces the creation of a new object on the heap. This is a separate object from the one in the string pool, even though it contains the same content.
+
+3. **Identity Hash Code**:
+   - The `System.identityHashCode()` method prints the hash code (which simulates the "address" or identity) of each string. This helps us understand if two variables point to the same object in memory.
+
+4. **Reference Comparison (`==`)**:
+   - `==` compares whether two references point to the **same memory location** (i.e., the same object). The comparison `s1 == s3` returns `true` because both refer to the same string literal in the pool. `s1 == s2` returns `false` because `s2` is a new object on the heap.
+
+5. **Content Comparison (`.equals()`)**:
+   - `.equals()` compares the **content** of two strings. Since the content of `s1`, `s2`, and `s3` is the same (`"code"`), `.equals()` returns `true` for both comparisons (`s1.equals(s2)` and `s1.equals(s3)`).
+
+### Expected Output:
+
+```
+HashCode of s1 (string literal): 1848295844
+HashCode of s3 (string literal): 1848295844
+HashCode of s2 (new string object): 1458274841
+
+s1 == s2: false
+s1 == s3: true
+
+s1.equals(s2): true
+s1.equals(s3): true
+
+Explanation:
+1. String literals (e.g., 'code') are stored in the string constant pool.
+2. If the string already exists in the pool, Java reuses it for any subsequent string literals with the same value.
+3. Using 'new String()' creates a new object on the heap, even if the content is identical.
+4. String pooling ensures memory optimization by reusing identical string literals.
+5. The comparison with '==' checks if two references point to the same object in memory.
+6. The '.equals()' method compares the content of two strings, not their memory locations.
+```
+
+### Key Takeaways:
+
+1. **String Pooling**: String literals are stored in the string constant pool, and the same literal is reused to save memory. `s1` and `s3` refer to the same object in the pool.
+
+2. **New String Object**: Using `new String("code")` creates a new object on the heap, even though its content is identical to the string in the pool. `s2` is a different object from `s1` and `s3`.
+
+3. **Reference Comparison (`==`)**: This compares the **memory locations** (or object identity). `s1` and `s3` are the same object in memory, but `s2` is a different object.
+
+4. **Content Comparison (`.equals()`)**: This compares the **content** of the strings (i.e., the actual string values). In this case, all strings have the same content ("code").
+
+This snippet should give you a good understanding of how string interning and memory optimization work with string literals and the `new String()` constructor in Java.
